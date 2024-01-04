@@ -1,62 +1,80 @@
-:root{
-  --one-player : rgb(9, 119, 156);
-  --two-player : rgb(131, 24, 24)
-}
-.pad {
-  width: 100%;
-  padding: 20px;
-  border-radius: 20px;
+:root {
+  --one-player: rgb(9, 119, 156);
+  --two-player: rgb(131, 24, 24);
+  --board: #2424248a;
+  --select :rgb(28, 157, 28);
 }
 
-.board{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 
-  repeat(9, auto);
-  background-color: #2424248a;
-  border-radius: 20px;
-  padding: 20px;
-  gap: 20px;
-}
-.player--one{
-  color: var(--one-player);
-}
-.player--two{
-  color: var(--two-player);
-}
-.users{
-  width: 100%;
+.users {
   display: flex;
   font-size: 2rem;
   font-weight: bold;
   justify-content: space-between;
-  /* padding: 10px 20px; */
+  margin-bottom: 20px;
 }
-.isSelected{
-  color: rgb(14, 173, 14);
+
+.isSelected {
+  color: var(--select);
 }
-.elements--one{
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(53, 50, 50, 0.866);
-  background-color: var(--two-player);
-  border-radius: 50%;
-  cursor: pointer;
-  overflow: hidden;
+
+.player--one {
+  color: var(--one-player);
 }
-.elements {
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(53, 50, 50, 0.866);
-  border-radius: 50%;
-  cursor: pointer;
-  overflow: hidden;
+
+.player--two {
+  color: var(--two-player);
 }
-.element--two{
+
+.board {
+  background-color: var(--board);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+tr {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+tr:hover {
+  background-color: #726b6b28;
+  border-radius: 20px;
+}
+
+tr:hover > td:last-child > div{
+  background-color: var(--select);
+}
+/* tr > td:last-child > div{
+  background-color: yellow;
+} */
+td {
+  margin: 10px;
+}
+
+.elements--one {
   width: 50px;
   height: 50px;
   border: 1px solid rgba(53, 50, 50, 0.866);
   background-color: var(--one-player);
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.elements {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(53, 50, 50, 0.866);
+  background-color: var(--board);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.element--two {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(53, 50, 50, 0.866);
+  background-color: var(--two-player);
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
