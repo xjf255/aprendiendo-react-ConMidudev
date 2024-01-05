@@ -15,7 +15,9 @@ function App() {
 
     const newBoard = ...board
     console.log(index)
+
   }
+  
   return (
     <main>
       <Header title={'Conecta 04'} user={USERS} />
