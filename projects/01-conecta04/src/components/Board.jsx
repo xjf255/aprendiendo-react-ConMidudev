@@ -1,22 +1,20 @@
-import { Circle } from "./Circle"
-import { BOARD } from "../const"
+import { Fill } from "./Fill"
 
-export const Board = ({turn,fn}) =>{
-    return(
-        <table className="board">
-        <tbody>
-          {
-            BOARD.map((_, index) => {
-              return (
-                <Circle key={index}
-                  style={_ === null ? 'elements' : _}
-                  turn={turn}
-                  action={fn}
-                  index={index} />
-              )
-            })
-          }
-        </tbody>
-      </table>
-    )
+export const Board = ({ rows, action, index}) => {
+  const handleClick = () => {
+    action(index)
+  }
+  return (
+    <tr key={index} onClick={handleClick}>
+      {
+        rows.map((_, indexFill) => {
+          return (
+            <Fill key={indexFill}
+              style={'elements'} />
+          )
+        })
+      }
+    </tr>
+
+  )
 }
