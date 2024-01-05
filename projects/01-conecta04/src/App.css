@@ -39,11 +39,9 @@ tr {
 tr:hover {
   background-color: #726b6b28;
   border-radius: 20px;
+  cursor: pointer;
 }
 
-tr:hover > td:last-child > div{
-  background-color: var(--select);
-}
 /* tr > td:last-child > div{
   background-color: yellow;
 } */
@@ -58,7 +56,6 @@ td {
   background-color: var(--one-player);
   border-radius: 50%;
   cursor: pointer;
-  overflow: hidden;
 }
 
 .elements {
@@ -67,15 +64,13 @@ td {
   border: 1px solid rgba(53, 50, 50, 0.866);
   background-color: var(--board);
   border-radius: 50%;
-  cursor: pointer;
 }
 
-.element--two {
+.elements--two {
   width: 50px;
   height: 50px;
   border: 1px solid rgba(53, 50, 50, 0.866);
   background-color: var(--two-player);
   border-radius: 50%;
   cursor: pointer;
-  overflow: hidden;
 }
