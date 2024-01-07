@@ -5,4 +5,4 @@ export const USERS = {
 
 export const BOARD = Array(9).fill(null)
 
-export const NUMROWS = 6;
+export const NUMROWS = 5;

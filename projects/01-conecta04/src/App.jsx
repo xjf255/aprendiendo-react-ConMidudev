@@ -7,7 +7,7 @@ import { Board } from "./components/Board"
 
 function App() {
   const [turn, setTurn] = useState(USERS.X)
-  const [board, setBoard] = useState(Array(9).fill(null).map(() => Array(7).fill(null)))
+  const [board, setBoard] = useState(Array(7).fill(null).map(() => Array(6).fill(null)))
 
   const updateBoard = (index, turn) => {
 
