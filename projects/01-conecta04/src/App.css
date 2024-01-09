@@ -24,6 +24,11 @@
 .player--two {
   color: var(--two-player);
 }
+button{
+  padding: 10px 20px;
+  display: grid;
+}
+
 
 .board {
   background-color: var(--board);
