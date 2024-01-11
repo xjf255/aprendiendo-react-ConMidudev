@@ -1,8 +1,10 @@
 :root {
-  --one-player: rgb(9, 119, 156);
-  --two-player: rgb(131, 24, 24);
+  --one-player: #31b49a;
+  --two-player: #e51d1d;
   --board: #2424248a;
-  --select :rgb(28, 157, 28);
+  --select: #3dc919;
+  --border: rgba(53, 50, 50, 0.866);
+  --button:rgba(53, 50, 50);
 }
 
 .users {
@@ -24,11 +26,6 @@
 .player--two {
   color: var(--two-player);
 }
-button{
-  padding: 10px 20px;
-  display: grid;
-}
-
 
 .board {
   background-color: var(--board);
@@ -47,9 +44,6 @@ tr:hover {
   cursor: pointer;
 }
 
-/* tr > td:last-child > div{
-  background-color: yellow;
-} */
 td {
   margin: 10px;
 }
@@ -57,7 +51,7 @@ td {
 .elements--one {
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(53, 50, 50, 0.866);
+  border: 1px solid var(--border);
   background-color: var(--one-player);
   border-radius: 50%;
   cursor: pointer;
@@ -66,7 +60,7 @@ td {
 .elements {
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(53, 50, 50, 0.866);
+  border: 1px solid var(--border);
   background-color: var(--board);
   border-radius: 50%;
 }
@@ -74,8 +68,50 @@ td {
 .elements--two {
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(53, 50, 50, 0.866);
+  border: 1px solid var(--border);
   background-color: var(--two-player);
   border-radius: 50%;
   cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.winner__modal {
+  position: absolute;
+  width: 500px;
+  padding: 10px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.winner {
+  text-align: center;
+  font-style: oblique;
+  font-size: 2rem;
+  font-weight: bold;
+}
+button {
+  cursor: pointer;
+  padding: 16px 26px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(195, 208, 223);
+  border-style: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+button:hover{
+  background-color: var(--button);
+  color: #fff;
 }

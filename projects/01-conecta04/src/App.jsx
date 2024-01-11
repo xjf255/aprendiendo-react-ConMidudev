@@ -4,32 +4,18 @@ import { Header } from "./components/Header"
 import { User } from "./components/User"
 import { USERS, NUMROWS } from "./const"
 import { Board } from "./components/Board"
-import { search } from "./logic/search"
+import { searchWinner } from "./logic/search"
+import { Winner } from "./components/Winner"
 
 function App() {
   const [turn, setTurn] = useState(USERS.X)
+  const [winner, setWinner] = useState(null)
   const [board, setBoard] = useState(Array(7).fill(null).map(() => Array(6).fill(null)))
 
-  const searchWinner = (column, row, turn) => {
-    const position = board[column][row];
-    //down
-    if (position == board[column][row + 1]) search.down(board, column, row, turn)
-    //diagonals
-    if (board[column][row] == board[column + 1][row + 1] || board[column][row] == board[column - 1][row - 1]) search.leftDown(board, column, row, turn)
-    if (board[column][row] == board[column + 1][row - 1] || board[column][row] == board[column - 1][row + 1]) search.leftUp(board, column, row, turn)
-    //sides
-    if (position == board[column - 1][row] || position == board[column + 1][row]) search.slides(board, column, row, turn)
-  }
-
-  // const resetBoard = () => {
-  //   for (let i = 0; i < board.length; i++) {
-  //     console.log(board[i],board[i].includes(null))
-  //     if (board[i].includes(null)) return
-  //     else if (i === 6) setBoard(Array(7).fill(null).map(() => Array(6).fill(null)))
-  //   }
-  // }
   const resetBoard = () => {
     setBoard(Array(7).fill(null).map(() => Array(6).fill(null)))
+    setTurn(USERS.X)
+    setWinner(null)
   }
 
 
@@ -55,12 +41,12 @@ function App() {
     const newTurn = turn === USERS.X ? USERS.Y : USERS.X;
     setTurn(newTurn)
 
-    searchWinner(index, NUMROWS - indice, turn)
+    searchWinner(board, index, NUMROWS - indice, turn, setWinner)
   }
 
   return (
     <main>
-      <Header title={'Conecta 04'} user={USERS} reset={resetBoard} />
+      <Header title={'Conecta 04'} user={USERS} />
       <User turn={turn} playerOne={USERS.X} playerTwo={USERS.Y} />
       <table className="board">
         <tbody>
@@ -77,6 +63,11 @@ function App() {
           }
         </tbody>
       </table>
+      {
+        winner != null
+          ? <Winner user={winner} fn={resetBoard}></Winner>
+          : false
+      }
     </main>
   )
 }

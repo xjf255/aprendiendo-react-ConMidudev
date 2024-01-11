@@ -1,5 +1,5 @@
 export const USERS = {
-    X: 'xjf_255',
+    X: 'user',
     Y: 'boot'
 }
 

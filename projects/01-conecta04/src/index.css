@@ -13,6 +13,7 @@
 
 body {
   margin: 0;
+  /* position: relative; */
   display: grid;
   place-items: center;
   min-width: 320px;
