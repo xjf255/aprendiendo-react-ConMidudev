@@ -16,3 +16,6 @@ section img{
     width: 200px;
     height: auto;
 }
+#app{
+  max-width: 50vw;
+}
