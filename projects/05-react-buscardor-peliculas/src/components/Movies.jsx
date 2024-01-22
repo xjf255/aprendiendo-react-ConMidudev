@@ -1,7 +1,7 @@
 const RenderMovie = ({ movies }) => {
     return (
         movies.map(movie => (
-            <li key={movie.id}>
+            <li className="movie" key={movie.id}>
                 <h3>{movie.title}</h3>
                 <p>{movie.year}</p>
                 <img src={movie.poster} alt="" />
@@ -19,7 +19,7 @@ const RenderNoResult = () => {
 export const Movies = ({ movies }) => {
   const hasmovies = movies?.length > 0
     return (
-        <ul>
+        <ul className="movies">
             {
                 hasmovies ? <RenderMovie movies={movies} /> : <RenderNoResult />
             }
