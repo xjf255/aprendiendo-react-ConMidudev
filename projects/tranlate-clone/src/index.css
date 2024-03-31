@@ -38,7 +38,7 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 4px 10px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -52,6 +52,43 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+tbody{
+  display: flex;
+  width: 70vw;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+tr{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  td > *{
+    width: 100%;
+  }
+  &:nth-child(2){
+    width: max-content;
+  }
+}
+
+button {
+  width: fit-content;
+  padding: 10px 20px;
+}
+
+
+select, option{
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+textarea{
+  min-height: 100px;
+  /* field-sizing:content; */
 }
 
 @media (prefers-color-scheme: light) {
