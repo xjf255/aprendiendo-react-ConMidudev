@@ -22,11 +22,12 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        project:'./tsconfig.json'
+        "project": './tsconfig.json'
     },
     "plugins": [
         "react"
     ],
     "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
     }
 }
