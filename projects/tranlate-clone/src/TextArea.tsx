@@ -12,18 +12,23 @@ function getPlaceholder ({ loading, type }: { type: SectionTypes, loading?: bool
   return 'Traducción'
 }
 
-const commonStyle = { border: 0, height: '200px' }
+const commonStyle = { border: 0, height: '200px', resize: 'none' }
 
 export function TextArea ({ type, loading, value, onChange }: Props) {
   const styles = type === SectionTypes.From
     ? commonStyle
     : { ...commonStyle, backgroundColor: '#f5f5f5' }
 
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(event.target.value)
+  }
+
   return (
     <textarea
       autoFocus={type === SectionTypes.From}
       placeholder={getPlaceholder({ loading, type })}
       value={value}
+      onChange={handleChange}
       style={styles}
     />
   )
