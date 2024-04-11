@@ -10,7 +10,7 @@ interface Props {
   value: string
 }
 function getPlaceholder({ loading, type }: { type: SectionTypes, loading?: boolean }) {
-  if (type === SectionTypes.From) return 'Introduccior texto'
+  if (type === SectionTypes.From) return 'Introduccir texto'
   if (loading === true) return 'Cargando...'
   return 'Traducción'
 }
