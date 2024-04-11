@@ -4,3 +4,16 @@
   padding: 2rem;
   text-align: center;
 }
+.box{
+  position: relative;
+}
+.box > *{
+  width: 100%;
+}
+.btn{
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  text-align: start;
+  padding: 10px;
+}

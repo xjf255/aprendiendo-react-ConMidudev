@@ -12,18 +12,30 @@ import { translate } from './services/translate'
 function App() {
   const { fromLanguage, loading, fromText, result, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage, setResult, setFromText } = useStore()
 
-  const debounceFromText = useDebounce(fromText, 250)
+  const debounceFromText = useDebounce(fromText, 700)
 
   useEffect(() => {
     if (debounceFromText === '') result
 
     translate({ fromLanguage, toLanguage, text: debounceFromText })
-      .then(result =>{
-        console.log(result)
+      .then(result => {
+        if (result == null) return
+        setResult(result)
       })
-      .catch(error => console.warn(error)
+      .catch(() => setResult('error')
       )
-  }, [debounceFromText])
+  }, [debounceFromText, fromLanguage, toLanguage])
+
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(result).catch(() => { })
+  }
+
+  const handleSpeak = () => {
+    const utterance = new SpeechSynthesisUtterance(result)
+    utterance.lang = 'es'
+    utterance.rate = 0.9
+    speechSynthesis.speak(utterance)
+  }
 
   return (
     <>
@@ -45,8 +57,10 @@ function App() {
           </tr>
           <tr>
             <td>
-              <LanguageSelector type={SectionTypes.To} value={toLanguage} onChange={setToLanguage} />
-              <TextArea type={SectionTypes.To} value={result} onChange={setResult} loading={loading} />
+              <div className="box">
+                <LanguageSelector type={SectionTypes.To} value={toLanguage} onChange={setToLanguage} />
+                <TextArea type={SectionTypes.To} value={result} onChange={setResult} loading={loading} actionCopy={handleClipboard} actionVoice={handleSpeak}/>
+              </div>
             </td>
           </tr>
         </tbody>

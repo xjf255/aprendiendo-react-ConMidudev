@@ -10,16 +10,20 @@ const InitialState: State = {
   loading: false
 }
 
-function reducer (state: State, action: Action) {
+function reducer(state: State, action: Action) {
   const { type } = action
 
   if (type === 'INTERCHANGE_LANGUAGES') {
     if (state.fromLanguage === 'auto') return state
+    const loading = state.fromText !== ''
 
     return {
       ...state,
       fromLanguage: state.toLanguage,
-      toLanguage: state.fromLanguage
+      toLanguage: state.fromLanguage,
+      fromText: state.result,
+      loading,
+      result: ''
     }
   }
   if (type === 'SET_FROM_LANGUAGE') {
@@ -47,7 +51,8 @@ function reducer (state: State, action: Action) {
     return {
       ...state,
       fromText: action.payload,
-      loading
+      loading,
+      result: ''
     }
   }
   if (type === 'SET_RESULT') {
