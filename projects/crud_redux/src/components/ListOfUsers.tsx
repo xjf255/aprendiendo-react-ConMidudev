@@ -11,10 +11,17 @@ import {
 } from "@tremor/react";
 import { useAppSelector } from "../hooks/store";
 import { useUserActions } from "../hooks/useUserActions";
+import { useEffect } from "react";
 
 export function ListOfUsers() {
 	const users = useAppSelector((state) => state.user);
 	const { removeUser } = useUserActions();
+
+	const handleClickEdit = () =>{
+		useEffect(() =>{
+			
+		})
+	}
 
 	return (
 		<Card>

@@ -1,5 +1,6 @@
 /* slice es una parte de la store */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 export type UserId = string;
 
@@ -58,10 +59,23 @@ export const userSlice = createSlice({
     returnUser:(state,action:PayloadAction<UserWithId>) => {
       const isUserRemove = state.some(user => user.id === action.payload.id)
       if(!isUserRemove) return [...state,action.payload]
+    },
+    modificatedUser:(state,action:PayloadAction<UserWithId>) =>{
+      const IsUserInState = state.some((user) => user.id === action.payload.id)
+      if(IsUserInState){
+        const {id,name,email,github} = action.payload
+        state.forEach(user => {
+          if(user.id === id){
+            user.name = name
+            user.email = email
+            user.github = github
+          }
+        })
+      }
     }
 	},
 });
 
 export default userSlice.reducer;
 
-export const { deleteUserById,createUser,returnUser } = userSlice.actions;
+export const { deleteUserById,createUser,returnUser,modificatedUser } = userSlice.actions;
