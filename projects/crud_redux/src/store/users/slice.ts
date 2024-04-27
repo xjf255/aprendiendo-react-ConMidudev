@@ -1,18 +1,10 @@
 /* slice es una parte de la store */
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface User {
-  name:string,
-  email:string,
-  github:string
-}
+export type UserId = string;
 
-export interface UserWithId extends User{
-  id:string
-}
-
-const initialState:UserWithId[] = [
-  {
+const DEFAULT_STATE = [
+	{
 		id: "1",
 		name: "Fernando Diaz",
 		email: "fernando@email.com",
@@ -30,13 +22,46 @@ const initialState:UserWithId[] = [
 		email: "rose@email.com",
 		github: "rose",
 	},
-]
+];
 
+export interface User {
+	name: string;
+	email: string;
+	github: string;
+}
+
+export interface UserWithId extends User {
+	id: UserId;
+}
+
+const initialState: UserWithId[] = (() => {
+	const persistedState = localStorage.getItem("__redux__state");
+	if (persistedState) {
+		return JSON.parse(persistedState).user;
+	}
+	return DEFAULT_STATE;
+})();
 
 export const userSlice = createSlice({
-  name:"users",
-  initialState,
-  reducers: {}
-})
+	name: "users",
+	initialState,
+	reducers: {
+		createUser: (state, action: PayloadAction<User>) => {
+			console.log(action.payload);
+			const id = crypto.randomUUID();
+			return [...state, { id, ...action.payload }];
+		},
+		deleteUserById: (state, action: PayloadAction<UserId>) => {
+			const id = action.payload;
+			return state.filter((user) => user.id !== id);
+		},
+    returnUser:(state,action:PayloadAction<UserWithId>) => {
+      const isUserRemove = state.some(user => user.id === action.payload.id)
+      if(!isUserRemove) return [...state,action.payload]
+    }
+	},
+});
 
 export default userSlice.reducer;
+
+export const { deleteUserById,createUser,returnUser } = userSlice.actions;
